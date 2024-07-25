@@ -26,14 +26,14 @@ header {
   display: flex;
   align-items: center;
   padding: 1em;
-  padding-left: 4em;
-  padding-right: 4em;
+  padding-left: 8em;
+  padding-right: 8em;
   justify-content: space-between;
   font-family: "Bungee Inline", cursive;
 }
 
 .title {
-  font-size: 30px;
+  font-size: 40px;
   font-family: "Bungee Inline", cursive;
 }
 
