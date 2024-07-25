@@ -1,5 +1,12 @@
-<template>Homeview</template>
+<template>
+  <div>
+    <HoverEffect />
+  </div>
+  >
+</template>
 
-<script setup></script>
+<script setup>
+import HoverEffect from "@/components/HoverEffect.vue";
+</script>
 
 <style scoped lang="scss"></style>
