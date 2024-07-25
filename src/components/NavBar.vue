@@ -25,7 +25,9 @@ header {
   width: auto;
   display: flex;
   align-items: center;
-  padding: 2em;
+  padding: 1em;
+  padding-left: 4em;
+  padding-right: 4em;
   justify-content: space-between;
   font-family: "Bungee Inline", cursive;
 }
