@@ -3,9 +3,9 @@
     <div class="title">SportClub</div>
     <div class="navigation">
       <ul>
-        <RouterLink :to="{ name: 'home' }">Home</RouterLink>
-        <RouterLink :to="{ name: 'sports' }">Sports</RouterLink>
-        <RouterLink :to="{ name: 'members' }">Members</RouterLink>
+        <li><RouterLink :to="{ name: 'home' }">Home</RouterLink></li>
+        <li><RouterLink :to="{ name: 'sports' }">Sports</RouterLink></li>
+        <li><RouterLink :to="{ name: 'members' }">Members</RouterLink></li>
       </ul>
     </div>
   </header>
@@ -19,12 +19,15 @@ import { RouterLink } from "vue-router";
 header {
   background: #212529;
   border-bottom: 3px solid hsla(160, 100%, 37%, 1);
+  margin-bottom: 0.5em;
   color: white;
   position: sticky;
   width: auto;
   display: flex;
-  padding: 2.5em;
+  align-items: center;
+  padding: 2em;
   justify-content: space-between;
+  font-family: "Bungee Inline", cursive;
 }
 
 .title {
@@ -33,5 +36,20 @@ header {
 }
 
 .navigation {
+  display: inline;
+  li {
+    padding: 1em;
+    list-style-type: none;
+    display: inline-block;
+  }
+  a {
+    text-decoration: none;
+    color: hsla(160, 100%, 37%, 1);
+    transition: 0.4s;
+  }
+  a:hover {
+    text-decoration: none !important;
+    color: white;
+  }
 }
 </style>
