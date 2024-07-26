@@ -16,7 +16,9 @@
         <td>5 to do</td>
         <td>LINK</td>
         <td><button class="edit">Edit</button></td>
-        <td><button class="delete">Delete</button></td>
+        <td>
+          <button class="delete" @click="onDelete(sport.id)">Delete</button>
+        </td>
       </tr>
     </table>
     <form @submit.prevent="onSubmit">
@@ -30,9 +32,10 @@
 </template>
 
 <script setup>
-import { useMutation, useQuery } from "@tanstack/vue-query";
-import { getSports, addSport } from "@/api-requests/sports";
-import { reactive } from "vue";
+import { useQuery, useQueryClient } from "@tanstack/vue-query";
+import { getSports, addSport, deleteSport } from "@/api-requests/sports";
+import { reactive, ref, watch } from "vue";
+const queryClient = useQueryClient();
 
 // Use Vue Query to fetch data
 const { data, error, isSuccess, isPending } = useQuery({
@@ -47,6 +50,11 @@ const formData = reactive({
 const onSubmit = () => {
   console.log(formData);
   addSport(formData);
+  queryClient.invalidateQueries({ queryKey: ["sports"] });
+};
+
+const onDelete = (id) => {
+  deleteSport(id);
 };
 </script>
 

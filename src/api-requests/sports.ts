@@ -8,7 +8,7 @@ type Sport = {
 export const getSports = async () => {
   try {
     const response = await axios.get(
-      "https://404404fb-e9a1-458e-bc65-95b20051eec1.mock.pstmn.io/sports"
+      "https://sports-case.scholten.dev/nils/sports"
     );
     // Return the data directly
     return response.data;
@@ -19,12 +19,20 @@ export const getSports = async () => {
 };
 
 export const addSport = async (data: Sport) => {
-  console.log(data);
   try {
-    await axios.post(
-      "https://404404fb-e9a1-458e-bc65-95b20051eec1.mock.pstmn.io/sports",
-      { name: data.name }
-    );
+    await axios.post("https://sports-case.scholten.dev/nils/sports", {
+      name: data.name,
+    });
+  } catch (error: any) {
+    // Throw error to be caught by useQuery
+    throw new Error(error);
+  }
+};
+
+export const deleteSport = async (id: string) => {
+  try {
+    await axios.delete(`https://sports-case.scholten.dev/nils/sports/${id}`);
+    return id;
   } catch (error: any) {
     // Throw error to be caught by useQuery
     throw new Error(error);
