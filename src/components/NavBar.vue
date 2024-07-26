@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="title">SportClub</div>
+    <div class="title">Amsterdam Sports Inc</div>
     <div class="navigation">
       <ul>
         <li><RouterLink :to="{ name: 'home' }">Home</RouterLink></li>
@@ -33,7 +33,7 @@ header {
 }
 
 .title {
-  font-size: 40px;
+  font-size: 45px;
   font-family: "Bungee Inline", cursive;
 }
 
