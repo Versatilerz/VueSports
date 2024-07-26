@@ -14,7 +14,7 @@ export const getSports = async () => {
     return response.data;
   } catch (error: any) {
     // Throw error to be caught by useQuery
-    throw new Error(error);
+    throw new Error("error");
   }
 };
 
@@ -32,7 +32,7 @@ export const addSport = async (data: Sport) => {
 export const deleteSport = async (id: string) => {
   try {
     await axios.delete(`https://sports-case.scholten.dev/nils/sports/${id}`);
-    return id;
+    return true;
   } catch (error: any) {
     // Throw error to be caught by useQuery
     throw new Error(error);

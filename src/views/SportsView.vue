@@ -32,29 +32,52 @@
 </template>
 
 <script setup>
-import { useQuery, useQueryClient } from "@tanstack/vue-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/vue-query";
 import { getSports, addSport, deleteSport } from "@/api-requests/sports";
-import { reactive, ref, watch } from "vue";
-const queryClient = useQueryClient();
+import { reactive, ref } from "vue";
 
+const queryClient = useQueryClient();
 // Use Vue Query to fetch data
 const { data, error, isSuccess, isPending } = useQuery({
   queryKey: ["sports"],
   queryFn: getSports,
-  cacheTime: 1000 * 60 * 5,
 });
-
 const formData = reactive({
   name: "",
 });
+
+// Mutation for adding a new sport
+const mutationAdd = useMutation({
+  mutationFn: addSport,
+  onSuccess: () => {
+    // Invalidate and refetch the sports query
+    queryClient.invalidateQueries({ queryKey: ["sports"] });
+    // Clear the form data after successful mutation
+    formData.name = "";
+  },
+});
+
 const onSubmit = () => {
-  console.log(formData);
-  addSport(formData);
-  queryClient.invalidateQueries({ queryKey: ["sports"] });
+  if (formData.name !== "") {
+    mutationAdd.mutate(formData);
+  }
 };
 
+const mutationDelete = useMutation({
+  mutationFn: deleteSport,
+  onSuccess: () => {
+    // Invalidate and refetch the sports query
+    queryClient.invalidateQueries({ queryKey: ["sports"] });
+  },
+});
+
+//delete a sport
 const onDelete = (id) => {
-  deleteSport(id);
+  const check = window.prompt("Type 'yes' if you want to delete this sport");
+  if (check === "yes") {
+    mutationDelete.mutate(id);
+  }
+  console.log(formData);
 };
 </script>
 
