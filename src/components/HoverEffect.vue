@@ -90,7 +90,7 @@ const outsideHover = ref(null);
 const handleClickOutside = (event) => {
   // Check if the click was outside the parent div
   if (outsideHover.value && !outsideHover.value.contains(event.target)) {
-    console.log("Clicked outside the parent div");
+    // console.log("Clicked outside the parent div");
     isClicked.value = "";
     // Perform any action you need here
   }

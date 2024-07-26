@@ -19,26 +19,20 @@
         <td><button class="delete">Delete</button></td>
       </tr>
     </table>
+    <form @submit.prevent="onSubmit">
+      <div>
+        <label for="name">Name</label>
+        <input v-model="formData.name" type="text" />
+      </div>
+      <button type="submit">Add Sport</button>
+    </form>
   </div>
 </template>
 
 <script setup>
-import axios from "axios";
-import { useQuery } from "@tanstack/vue-query";
-
-// Function to fetch sports data
-const getSports = async () => {
-  try {
-    const response = await axios.get(
-      "https://404404fb-e9a1-458e-bc65-95b20051eec1.mock.pstmn.io/sports"
-    );
-    // Return the data directly
-    return response.data;
-  } catch (error) {
-    // Throw error to be caught by useQuery
-    throw new Error(error);
-  }
-};
+import { useMutation, useQuery } from "@tanstack/vue-query";
+import { getSports, addSport } from "@/api-requests/sports";
+import { reactive } from "vue";
 
 // Use Vue Query to fetch data
 const { data, error, isSuccess, isPending } = useQuery({
@@ -46,6 +40,14 @@ const { data, error, isSuccess, isPending } = useQuery({
   queryFn: getSports,
   cacheTime: 1000 * 60 * 5,
 });
+
+const formData = reactive({
+  name: "",
+});
+const onSubmit = () => {
+  console.log(formData);
+  addSport(formData);
+};
 </script>
 
 <style scoped lang="scss">
