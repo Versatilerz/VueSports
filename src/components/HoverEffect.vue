@@ -148,7 +148,7 @@ $transitionCubic: cubic-bezier(0.1, 0.7, 0, 1);
 
   // for clicked open version of image
   .open {
-    width: 15rem;
+    width: 20rem;
     transform: translateZ(17.375rem);
     filter: inherit;
     z-index: 1;
