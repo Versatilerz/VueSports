@@ -21,13 +21,15 @@
         </td>
       </tr>
     </table>
-    <form @submit.prevent="onSubmit">
-      <div>
-        <label for="name">Name</label>
-        <input v-model="formData.name" type="text" />
-      </div>
-      <button type="submit">Add Sport</button>
-    </form>
+    <div class="sport">
+      <form @submit.prevent="onSubmit">
+        <div>
+          <label for="name">Name</label>
+          <input v-model="formData.name" type="text" />
+        </div>
+        <button type="submit">Add Sport</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -73,11 +75,11 @@ const mutationDelete = useMutation({
 
 //delete a sport
 const onDelete = (id) => {
-  const check = window.prompt("Type 'yes' if you want to delete this sport");
-  if (check === "yes") {
-    mutationDelete.mutate(id);
-  }
-  console.log(formData);
+  //   const check = window.prompt("Type 'yes' if you want to delete this sport");
+  //   if (check === "yes") {
+
+  //   }
+  mutationDelete.mutate(id);
 };
 </script>
 
@@ -92,11 +94,13 @@ const onDelete = (id) => {
 }
 
 .container {
-  height: 60vh;
+  max-height: 60vh;
+  position: relative;
+  top: 4rem;
+  overflow-y: scroll;
   color: white;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 h2 {
@@ -123,5 +127,22 @@ button {
 
 .delete {
   color: red;
+}
+
+.sport {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 1 rem;
+
+  button {
+    width: 5rem;
+    padding: 0.2rem;
+    margin: 1rem;
+  }
 }
 </style>
