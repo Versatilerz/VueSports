@@ -2,25 +2,7 @@
   <div class="loader" v-if="isPending">Loading data...</div>
   <div v-else-if="error">Error...</div>
   <div v-else-if="isSuccess" class="container">
-    <h2>Sports</h2>
-    <table>
-      <tr>
-        <th>Sport</th>
-        <th>#Members</th>
-        <th>GoToMembers</th>
-        <th>Edit sport</th>
-        <th>Delete sport</th>
-      </tr>
-      <tr v-for="sport in data" :key="sport.id">
-        <td>{{ sport.name }}</td>
-        <td>5 to do</td>
-        <td>LINK</td>
-        <td><button class="edit">Edit</button></td>
-        <td>
-          <button class="delete" @click="onDelete(sport.id)">Delete</button>
-        </td>
-      </tr>
-    </table>
+    <TheTable title="Sports" :headerData="headers" :tableData="data" />
     <div class="sport">
       <form @submit.prevent="onSubmit">
         <div>
@@ -36,7 +18,16 @@
 <script setup>
 import { useMutation, useQuery, useQueryClient } from "@tanstack/vue-query";
 import { getSports, addSport, deleteSport } from "@/api-requests/sports";
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
+import TheTable from "@/components/TheTable.vue";
+
+const headers = [
+  "Sport",
+  "#Members",
+  "GoToMembers",
+  "Edit sport",
+  "Delete sport",
+];
 
 const queryClient = useQueryClient();
 // Use Vue Query to fetch data
@@ -75,10 +66,6 @@ const mutationDelete = useMutation({
 
 //delete a sport
 const onDelete = (id) => {
-  //   const check = window.prompt("Type 'yes' if you want to delete this sport");
-  //   if (check === "yes") {
-
-  //   }
   mutationDelete.mutate(id);
 };
 </script>
@@ -97,38 +84,12 @@ const onDelete = (id) => {
   max-height: 60vh;
   position: relative;
   top: 4rem;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   color: white;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-h2 {
-  font-family: "Bungee Inline", cursive;
-  color: hsla(160, 100%, 37%, 1);
-}
-
-th {
-  border: 1px solid white;
-}
-td {
-  border: 1px solid white;
-  width: 7rem;
-  text-align: center;
-}
-
-button {
-  background-color: rgb(43, 40, 40);
-  width: 4rem;
-}
-.edit {
-  color: orange;
-}
-
-.delete {
-  color: red;
-}
-
 .sport {
   width: 250px;
   height: 250px;
@@ -143,6 +104,8 @@ button {
     width: 5rem;
     padding: 0.2rem;
     margin: 1rem;
+    background-color: rgb(43, 40, 40);
+    width: 5rem;
   }
 }
 </style>
