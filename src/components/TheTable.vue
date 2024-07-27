@@ -4,20 +4,44 @@
     <tr>
       <th v-for="header in headerData" :key="header">{{ header }}</th>
     </tr>
-    <tr v-for="item in props.tableData" :key="item.id">
-      <td>{{ item.name }}</td>
+    <tr
+      v-show="props.type === 'sports'"
+      v-for="sport in props.tableData"
+      :key="sport.id"
+    >
+      <td>{{ sport.name }}</td>
       <td>5 to do</td>
       <td>LINK</td>
       <td><button class="edit">Edit</button></td>
       <td>
-        <button class="delete" @click="onDelete(item.id)">Delete</button>
+        <button class="delete" @click="onDelete(sport.id)">Delete</button>
+      </td>
+    </tr>
+    <tr
+      v-show="props.type === 'members'"
+      v-for="member in props.tableData"
+      :key="member.id"
+    >
+      <td>{{ member.name.lastName }}</td>
+      <td>{{ member.name.firstName }}</td>
+      <td># of sports</td>
+      <td>ToMember</td>
+      <td><button class="edit">Edit</button></td>
+      <td>
+        <button class="delete" @click="onDelete(member.id)">Delete</button>
       </td>
     </tr>
   </table>
 </template>
 
 <script setup>
-const props = defineProps(["sports ", "title", "headerData", "tableData"]);
+const props = defineProps([
+  "type",
+  "sports ",
+  "title",
+  "headerData",
+  "tableData",
+]);
 </script>
 
 <style scoped lang="scss">

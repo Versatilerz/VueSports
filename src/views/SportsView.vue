@@ -2,7 +2,12 @@
   <div class="loader" v-if="isPending">Loading data...</div>
   <div v-else-if="error">Error...</div>
   <div v-else-if="isSuccess" class="container">
-    <TheTable title="Sports" :headerData="headers" :tableData="data" />
+    <TheTable
+      type="sports"
+      title="Sports"
+      :headerData="headers"
+      :tableData="data"
+    />
     <div class="sport">
       <form @submit.prevent="onSubmit">
         <div>
