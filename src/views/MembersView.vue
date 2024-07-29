@@ -7,16 +7,43 @@
       title="Members"
       :headerData="headers"
       :tableData="data"
+      :onDelete="onDelete"
     />
-    <!-- <div class="member">
+    <div class="member">
       <form @submit.prevent="onSubmit">
         <div>
-          <label for="name">Name</label>
-          <input v-model="formData.name" type="text" />
+          <label for="firstName">First Name</label>
+          <input v-model="formData.name.firstName" type="text" />
+        </div>
+        <div>
+          <label for="lastName">Last Name</label>
+          <input v-model="formData.name.lastName" type="text" />
+        </div>
+        <div>
+          <label for="image">Image url</label>
+          <input v-model="formData.image" type="url" />
+        </div>
+        <div>
+          <label for="sports">Select your sport</label>
+          <select v-model="formData.sports" placeholder="Choose a sport">
+            <option>Tennis</option>
+            <option>Soccer</option>
+            <option>Basketball</option>
+            <option>Karting</option>
+            <option>Kickboxing</option>
+            <option>Sailing</option>
+            <option>Rock Climbing</option>
+            <option>American Football</option>
+            <option>Archery</option>
+            <option>IceHockey</option>
+            <option>Spear Throwing</option>
+            <option>Baseball</option>
+            <option>Padel</option>
+          </select>
         </div>
         <button type="submit">Add Member</button>
       </form>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -43,7 +70,12 @@ const { data, error, isSuccess, isPending } = useQuery({
 });
 
 const formData = reactive({
-  name: "",
+  image: "",
+  name: {
+    firstName: "",
+    lastName: "",
+  },
+  sports: [],
 });
 
 // Mutation for adding a new member
@@ -58,6 +90,7 @@ const mutationAdd = useMutation({
 });
 
 const onSubmit = () => {
+  console.log(formData);
   if (formData.name !== "") {
     mutationAdd.mutate(formData);
   }
@@ -102,17 +135,32 @@ const onDelete = (id) => {
   height: 250px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
   margin: 1 rem;
+  text-align: center;
 
+  div {
+    width: 300px;
+    margin: 0.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+
+    input {
+      width: 50%;
+    }
+
+    select {
+      width: 50%;
+    }
+  }
   button {
-    width: 5rem;
+    width: 6rem;
     padding: 0.2rem;
     margin: 1rem;
     background-color: rgb(43, 40, 40);
-    width: 5rem;
+
+    color: hsla(160, 100%, 37%, 1);
   }
 }
 </style>

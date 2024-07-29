@@ -14,7 +14,7 @@
       <td>LINK</td>
       <td><button class="edit">Edit</button></td>
       <td>
-        <button class="delete" @click="onDelete(sport.id)">Delete</button>
+        <button class="delete" @click="props.onDelete(sport.id)">Delete</button>
       </td>
     </tr>
     <tr
@@ -28,7 +28,9 @@
       <td>ToMember</td>
       <td><button class="edit">Edit</button></td>
       <td>
-        <button class="delete" @click="onDelete(member.id)">Delete</button>
+        <button class="delete" @click="props.onDelete(member.id)">
+          Delete
+        </button>
       </td>
     </tr>
   </table>

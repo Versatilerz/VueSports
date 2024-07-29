@@ -23,7 +23,12 @@ export const getMembers = async () => {
 export const addMember = async (data: Member) => {
   try {
     await axios.post("https://sports-case.scholten.dev/nils/members", {
-      name: data.name,
+      name: {
+        firstName: data.name.firstName,
+        lastName: data.name.lastName,
+      },
+      image: data.image,
+      sports: [data.sports],
     });
   } catch (error: any) {
     // Throw error to be caught by useQuery
@@ -33,7 +38,7 @@ export const addMember = async (data: Member) => {
 
 export const deleteMember = async (id: string) => {
   try {
-    await axios.delete(`https://sports-case.scholten.dev/nils/member/${id}`);
+    await axios.delete(`https://sports-case.scholten.dev/nils/members/${id}`);
     return true;
   } catch (error: any) {
     // Throw error to be caught by useQuery

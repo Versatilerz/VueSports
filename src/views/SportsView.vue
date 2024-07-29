@@ -112,6 +112,7 @@ const onDelete = (id) => {
     margin: 1rem;
     background-color: rgb(43, 40, 40);
     width: 5rem;
+    color: hsla(160, 100%, 37%, 1);
   }
 }
 </style>
