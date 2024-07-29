@@ -7,6 +7,7 @@
       title="Sports"
       :headerData="headers"
       :tableData="data"
+      :onDelete="onDelete"
     />
     <div class="sport">
       <form @submit.prevent="onSubmit">

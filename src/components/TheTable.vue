@@ -41,6 +41,7 @@ const props = defineProps([
   "title",
   "headerData",
   "tableData",
+  "onDelete",
 ]);
 </script>
 
