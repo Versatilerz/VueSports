@@ -104,7 +104,10 @@ const onDelete = (id) => {
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  margin: 1 rem;
+
+  label {
+    margin-right: 1rem;
+  }
 
   button {
     width: 5rem;
